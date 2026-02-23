@@ -32,26 +32,31 @@
         android:background="#1A1A1A"
         app:layout_constraintBottom_toBottomOf="parent">
 
-        <ImageButton
+        <Button
             android:id="@+id/btnPlay"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@android:drawable/ic_media_play"
-            android:background="?attr/selectableItemBackground" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Play"
+            android:backgroundTint="#FF6B35"
+            android:textColor="#FFFFFF" />
 
-        <ImageButton
+        <Button
             android:id="@+id/btnCut"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@android:drawable/ic_menu_cut"
-            android:background="?attr/selectableItemBackground" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cut"
+            android:backgroundTint="#FF6B35"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp" />
 
-        <ImageButton
+        <Button
             android:id="@+id/btnAddText"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@android:drawable/ic_menu_edit"
-            android:background="?attr/selectableItemBackground" />
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Text"
+            android:backgroundTint="#FF6B35"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="8dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

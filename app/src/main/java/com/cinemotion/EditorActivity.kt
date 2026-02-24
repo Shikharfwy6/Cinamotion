@@ -1,29 +1,25 @@
 package com.cinemotion
 
 import android.os.Bundle
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import com.cinemotion.databinding.ActivityEditorBinding
 
 class EditorActivity : AppCompatActivity() {
     
-    private lateinit var binding: ActivityEditorBinding
-    
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityEditorBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_editor)
         
-        // Setup buttons
-        binding.btnPlay.setOnClickListener {
-            // TODO: Play/Pause video
+        findViewById<Button>(R.id.btnPlay).setOnClickListener {
+            // TODO: Play/Pause
         }
         
-        binding.btnCut.setOnClickListener {
-            // TODO: Cut at playhead
+        findViewById<Button>(R.id.btnCut).setOnClickListener {
+            // TODO: Cut
         }
         
-        binding.btnAddText.setOnClickListener {
-            // TODO: Add text layer
+        findViewById<Button>(R.id.btnAddText).setOnClickListener {
+            // TODO: Add text
         }
     }
 }

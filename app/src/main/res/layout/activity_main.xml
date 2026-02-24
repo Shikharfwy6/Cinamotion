@@ -1,14 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     android:gravity="center"
-    android:background="#0D0D0D">
+    android:background="#0D0D0D"
+    android:padding="24dp">
+
     <TextView
+        android:id="@+id/textTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="CineMotion Pro"
         android:textColor="#FF6B35"
-        android:textSize="32sp"
-        android:textStyle="bold" />
+        android:textSize="36sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="8dp" />
+
+    <TextView
+        android:id="@+id/textSubtitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Professional Video Editor"
+        android:textColor="#B3B3B3"
+        android:textSize="16sp"
+        android:layout_marginBottom="48dp" />
+
+    <Button
+        android:id="@+id/buttonNewProject"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="New Project"
+        android:backgroundTint="#FF6B35"
+        android:textColor="#FFFFFF" />
+
+    <Button
+        android:id="@+id/buttonOpenProject"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:text="Open Project"
+        android:layout_marginTop="16dp"
+        style="@style/Widget.Material3.Button.OutlinedButton" />
+
 </LinearLayout>

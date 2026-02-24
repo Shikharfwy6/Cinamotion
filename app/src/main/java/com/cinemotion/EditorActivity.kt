@@ -2,6 +2,7 @@ package com.cinemotion
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 
 class EditorActivity : AppCompatActivity() {
@@ -10,16 +11,17 @@ class EditorActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_editor)
         
-        findViewById<Button>(R.id.btnPlay).setOnClickListener {
-            // TODO: Play/Pause
+        // Safe findViewById with null checks
+        findViewById<Button>(R.id.btnPlay)?.setOnClickListener {
+            Toast.makeText(this, "Play clicked", Toast.LENGTH_SHORT).show()
         }
         
-        findViewById<Button>(R.id.btnCut).setOnClickListener {
-            // TODO: Cut
+        findViewById<Button>(R.id.btnCut)?.setOnClickListener {
+            Toast.makeText(this, "Cut clicked", Toast.LENGTH_SHORT).show()
         }
         
-        findViewById<Button>(R.id.btnAddText).setOnClickListener {
-            // TODO: Add text
+        findViewById<Button>(R.id.btnAddText)?.setOnClickListener {
+            Toast.makeText(this, "Add Text clicked", Toast.LENGTH_SHORT).show()
         }
     }
 }

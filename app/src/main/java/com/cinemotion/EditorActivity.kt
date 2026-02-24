@@ -85,7 +85,7 @@ class EditorActivity : AppCompatActivity() {
         }
         
         // Export button
-        findViewById<ImageButton>(R.id.id.btnExport).setOnClickListener {
+        findViewById<ImageButton>(R.id.btnExport).setOnClickListener {
             Toast.makeText(this, "Export feature coming soon!", Toast.LENGTH_SHORT).show()
         }
         

@@ -1,65 +1,356 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout 
+<androidx.coordinatorlayout.widget.CoordinatorLayout 
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#0D0D0D">
 
-    <!-- Video Preview Placeholder -->
-    <View
-        android:id="@+id/playerView"
+    <!-- Main Content -->
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#000000"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/timelineView"
-        app:layout_constraintHeight_percent="0.6" />
+        android:layout_height="match_parent"
+        android:fillViewport="true">
 
-    <!-- Timeline Placeholder -->
-    <View
-        android:id="@+id/timelineView"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:background="#1A1A1A"
-        app:layout_constraintBottom_toTopOf="@id/toolbar"
-        app:layout_constraintHeight_percent="0.3" />
-
-    <!-- Toolbar -->
-    <LinearLayout
-        android:id="@+id/toolbar"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:background="#252525"
-        android:padding="8dp"
-        app:layout_constraintBottom_toBottomOf="parent">
-
-        <Button
-            android:id="@+id/btnPlay"
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Play"
-            android:backgroundTint="#FF6B35"
-            android:textColor="#FFFFFF" />
+            android:orientation="vertical">
 
-        <Button
-            android:id="@+id/btnCut"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Cut"
-            android:backgroundTint="#FF6B35"
-            android:textColor="#FFFFFF"
-            android:layout_marginStart="8dp" />
+            <!-- TOP TOOLBAR -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="#1A1A1A"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:paddingHorizontal="16dp">
 
-        <Button
-            android:id="@+id/btnAddText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Text"
-            android:backgroundTint="#FF6B35"
-            android:textColor="#FFFFFF"
-            android:layout_marginStart="8dp" />
-    </LinearLayout>
+                <ImageButton
+                    android:id="@+id/btnBack"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_menu_close_clear_cancel"
+                    android:tint="#FFFFFF" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="CineMotion Pro"
+                    android:textColor="#FF6B35"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:gravity="center" />
+
+                <ImageButton
+                    android:id="@+id/btnExport"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_menu_save"
+                    android:tint="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- VIDEO PREVIEW -->
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#000000">
+
+                <androidx.media3.ui.PlayerView
+                    android:id="@+id/playerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+
+                <!-- Empty State -->
+                <TextView
+                    android:id="@+id/tvAddVideo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Tap to add video"
+                    android:textColor="#666666"
+                    android:textSize="18sp"
+                    android:drawableTop="@android:drawable/ic_menu_gallery"
+                    android:drawableTint="#666666"
+                    android:gravity="center" />
+            </FrameLayout>
+
+            <!-- PLAYBACK CONTROLS -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1A1A1A"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="8dp">
+
+                <ImageButton
+                    android:id="@+id/btnRewind"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_previous"
+                    android:tint="#FFFFFF" />
+
+                <ImageButton
+                    android:id="@+id/btnPlayPause"
+                    android:layout_width="64dp"
+                    android:layout_height="64dp"
+                    android:layout_marginHorizontal="32dp"
+                    android:background="@drawable/circle_button"
+                    android:src="@android:drawable/ic_media_play"
+                    android:tint="#FFFFFF" />
+
+                <ImageButton
+                    android:id="@+id/btnForward"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@android:drawable/ic_media_next"
+                    android:tint="#FFFFFF" />
+            </LinearLayout>
+
+            <!-- TIME DISPLAY -->
+            <TextView
+                android:id="@+id/tvTime"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#1A1A1A"
+                android:text="00:00 / 00:00"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:gravity="center"
+                android:padding="8dp" />
+
+            <!-- TIMELINE -->
+            <com.cinemotion.timeline.TimelineView
+                android:id="@+id/timelineView"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="#141414" />
+
+            <!-- TOOLS TABS -->
+            <com.google.android.material.tabs.TabLayout
+                android:id="@+id/tabLayout"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="#1A1A1A"
+                app:tabTextColor="#888888"
+                app:tabSelectedTextColor="#FF6B35"
+                app:tabIndicatorColor="#FF6B35">
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Cut" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Text" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Effects" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Color" />
+
+                <com.google.android.material.tabs.TabItem
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Audio" />
+            </com.google.android.material.tabs.TabLayout>
+
+            <!-- TOOLS PANEL -->
+            <FrameLayout
+                android:id="@+id/toolsPanel"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="#252525">
+
+                <!-- CUT TOOLS -->
+                <LinearLayout
+                    android:id="@+id/panelCut"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/btnSplit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Split"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="8dp" />
+
+                    <Button
+                        android:id="@+id/btnTrim"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Trim"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="8dp" />
+
+                    <Button
+                        android:id="@+id/btnDelete"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Delete"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="8dp" />
+                </LinearLayout>
+
+                <!-- TEXT TOOLS (Hidden by default) -->
+                <LinearLayout
+                    android:id="@+id/panelText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="16dp">
+
+                    <EditText
+                        android:id="@+id/etText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:hint="Enter text"
+                        android:textColor="#FFFFFF"
+                        android:textColorHint="#666666"
+                        android:backgroundTint="#FF6B35" />
+
+                    <SeekBar
+                        android:id="@+id/sbTextSize"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="24"
+                        android:layout_marginTop="16dp" />
+
+                    <Button
+                        android:id="@+id/btnAddTextConfirm"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Add Text"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_marginTop="16dp" />
+                </LinearLayout>
+
+                <!-- EFFECTS TOOLS (Hidden by default) -->
+                <LinearLayout
+                    android:id="@+id/panelEffects"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <Button
+                        android:id="@+id/btnBlur"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Blur"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="4dp" />
+
+                    <Button
+                        android:id="@+id/btnGlitch"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Glitch"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="4dp" />
+
+                    <Button
+                        android:id="@+id/btnChroma"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Chroma"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="4dp" />
+
+                    <Button
+                        android:id="@+id/btnParticles"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Particles"
+                        android:backgroundTint="#FF6B35"
+                        android:layout_margin="4dp" />
+                </LinearLayout>
+
+                <!-- COLOR TOOLS (Hidden by default) -->
+                <LinearLayout
+                    android:id="@+id/panelColor"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Brightness"
+                        android:textColor="#FFFFFF" />
+
+                    <SeekBar
+                        android:id="@+id/sbBrightness"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="200"
+                        android:progress="100" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Contrast"
+                        android:textColor="#FFFFFF"
+                        android:layout_marginTop="8dp" />
+
+                    <SeekBar
+                        android:id="@+id/sbContrast"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="200"
+                        android:progress="100" />
+                </LinearLayout>
+
+                <!-- AUDIO TOOLS (Hidden by default) -->
+                <LinearLayout
+                    android:id="@+id/panelAudio"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:visibility="gone"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Volume"
+                        android:textColor="#FFFFFF" />
+
+                    <SeekBar
+                        android:id="@+id/sbVolume"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:max="100"
+                        android:progress="100" />
+                </LinearLayout>
+
+            </FrameLayout>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
